@@ -12,7 +12,7 @@ function TaskForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
-  const tasks = useSelector((state) => state.tasks);
+  const tasks = useSelector((state) => state.tasks.data);
 
   const handleChange = (e) => {
     setTask({

@@ -1,10 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { deleteTask } from "../features/tasks/taskSlice";
+import { fetchData, deleteTask } from "../features/tasks/taskSlice";
 
 function TasksList() {
-  const tasks = useSelector((state) => state.tasks);
+  const tasks = useSelector((state) => state.tasks.data);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchData()); // Cuando el componente se monta, llamamos a fetchData para cargar los datos desde el servidor
+  }, [dispatch]);
 
   const handleDelete = (id) => {
     dispatch(deleteTask(id));
@@ -42,19 +47,11 @@ function TasksList() {
                 </button>
               </div>
             </header>
-            <p>{task.description}</p>
+            <p className="textArea">{task.description}</p>
             <p className="text-xs text-slate-400">{task.id}</p>
           </div>
         ))}
-      </div>
-      <div className="flex justify-end items-center py-4">
-        <Link
-                to="/poke-api"
-                className="bg-indigo-600 px-2 py-1 rounded-sm text-sm shadow-sm"
-                >
-                PokeApi
-        </Link>
-      </div>  
+      </div> 
     </div>
   );
 }

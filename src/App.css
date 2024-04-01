@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.textArea {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+}
